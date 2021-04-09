@@ -1,7 +1,10 @@
 package com.wongnai.interview.wamup;
 
+import java.lang.Long;
+import java.util.LinkedList;
+import java.util.InputMismatchException;
 public class DigitalRoot {
-	public Object check(long number) {
+	public Object check(long number){
 		//TODO: Warmup practice => Implement this method to find out the digital root number of the input.
 		// The digital root of a non-negative integer is the single-digit value obtained by an iterative process
 		// of summing digits, on each iteration using the result from the previous iteration to compute the digit sum.
@@ -15,6 +18,24 @@ public class DigitalRoot {
 		// -------------------------------
 		// All test case in DigitalRootTest must be passed.
 
-		return null;
+			if (number >= 0) {
+				while (number > 9) {
+					long temp_number = number;
+					number = 0L;
+					LinkedList<Long> stack = new LinkedList<Long>();
+					while (temp_number > 0) {
+						stack.push(temp_number % 10);
+						temp_number = temp_number / 10;
+					}
+
+					while (!stack.isEmpty()) {
+						number += stack.pop();
+					}
+				}
+				return number;
+			}
+
+			throw new InputMismatchException();
+
 	}
 }

@@ -23,15 +23,26 @@ public class DigitalRootTest {
 	@Test
 	public void testDigitalRoot() {
 		//You are able to add more unit test to make it coverage.
+		// Edge Case #1 Valid Partitioning
+		Assert.assertThat(digitalRoot.check(0), Matchers.equalTo(0L));
+		// Edge Case #2 Valid Partitioning
+		Assert.assertThat(digitalRoot.check(1), Matchers.equalTo(1L));
 		Assert.assertThat(digitalRoot.check(9), Matchers.equalTo(9L));
+		// Edge Case #3 Valid Partitioning, Edge between 9 to 10
+		Assert.assertThat(digitalRoot.check(10), Matchers.equalTo(1L));
 		Assert.assertThat(digitalRoot.check(934623324L), Matchers.equalTo(9L));
 		Assert.assertThat(digitalRoot.check(1235889343324L), Matchers.equalTo(1L));
 		Assert.assertThat(digitalRoot.check(493193L), Matchers.equalTo(2L));
+		// Edge Case #4 Valid Partitioning, Largest Long that possible to be
+		Assert.assertThat(digitalRoot.check(9223372036854775807L), Matchers.equalTo(7L));
+
 	}
 
 
 	@Test(expected = InputMismatchException.class)
 	public void testInvalidInput() {
 		digitalRoot.check(-87625L);
+		// Edge Case #5 Invalid Partitioning
+		digitalRoot.check(-1L);
 	}
 }

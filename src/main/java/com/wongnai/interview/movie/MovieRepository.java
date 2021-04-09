@@ -1,7 +1,9 @@
 package com.wongnai.interview.movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import com.wongnai.interview.movie.external.MovieData;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 import org.springframework.data.repository.query.Param;
@@ -22,6 +24,7 @@ public interface MovieRepository extends CrudRepository<Movie, Long> {
 	 * 		a user query keyword
 	 * @return list of movie
 	 */
+
 	@Query("SELECT m FROM Movie m where m.name LIKE %:keyword%")
 	List<Movie> findByNameContains(@Param("keyword") String keyword);
 }
