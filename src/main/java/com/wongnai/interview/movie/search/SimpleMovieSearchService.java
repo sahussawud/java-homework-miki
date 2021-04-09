@@ -30,6 +30,12 @@ public class SimpleMovieSearchService implements MovieSearchService {
 		movies.forEach(m -> {
 			String title = m.getTitle().toLowerCase();
 			String query = queryText.toLowerCase();
+			/*
+			* check query are contain in movie title and whole sentence aren't exactly same whole query
+			*
+			* if query is a word and it is not match with word in title should not include
+			*
+			* */
 			if((title.contains(query) && !title.equals(query)) ){
 				int firstIndex = title.indexOf(query);
 				int lastIndex = title.substring(firstIndex).indexOf(" ")+firstIndex;

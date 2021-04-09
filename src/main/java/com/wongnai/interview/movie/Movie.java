@@ -18,6 +18,7 @@ public class Movie {
 
 	private String name;
 
+
 	@ElementCollection(fetch = FetchType.EAGER)
 	private List<String> actors = new ArrayList<>();
 
