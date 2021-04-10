@@ -1,6 +1,6 @@
 package com.wongnai.interview.movie;
 
-import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 
 import com.wongnai.interview.movie.external.MovieData;
@@ -27,4 +27,9 @@ public interface MovieRepository extends CrudRepository<Movie, Long> {
 
 	@Query("SELECT m FROM Movie m where lower(m.name) LIKE lower(concat('%', :keyword, '%'))")
 	List<Movie> findByNameContains(@Param("keyword") String keyword);
+
+//	@Query("SELECT m FROM Movie m where m.id IN (:var1)")
+//	List<Movie> findAllByIds(HashSet<Long> var1);
+
+
 }

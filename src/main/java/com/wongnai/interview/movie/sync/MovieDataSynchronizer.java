@@ -24,13 +24,16 @@ public class MovieDataSynchronizer {
 	@Transactional
 	public void forceSync() {
 		//TODO: implement this to sync movie into repository
-		MoviesResponse fetchMovie = movieDataService.fetchAll();
-		List<Movie> movies = new ArrayList<Movie>();
-		fetchMovie.forEach(m->{
-			Movie new_movie = new Movie(m.getTitle());
-			new_movie.setActors(m.getCast());
-			movies.add(new_movie);
-		});
-		movieRepository.saveAll(movies);
+		if(movieRepository.count() <= 0L){
+			MoviesResponse fetchMovie = movieDataService.fetchAll();
+			List<Movie> movies = new ArrayList<Movie>();
+			fetchMovie.forEach(m->{
+				Movie new_movie = new Movie(m.getTitle());
+				new_movie.setActors(m.getCast());
+				movies.add(new_movie);
+			});
+			movieRepository.saveAll(movies);
+		}
+
 	}
 }
